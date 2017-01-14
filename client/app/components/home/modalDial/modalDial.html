@@ -1,0 +1,111 @@
+<div hide show-gt-sm flex layout="row">
+
+  <div flex>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <span>Выберите тип записи календаря</span>
+      </div>
+    </md-toolbar>
+    <md-divider></md-divider>
+    <md-content>
+      <md-subheader class="md-no-sticky">Виды спорта</md-subheader>
+      <md-divider></md-divider>
+      <md-list class="md-dense" flex style="overflow: auto; max-height: 150px;">
+        <md-list-item class="md-1-line" layout="row" ng-repeat="sport in $ctrl.sports"
+                      ng-click="$ctrl.showActivityType(sport.type, sport.category)">
+          <i class="material-icons">directions_walk</i>
+          <span style="margin-left: 20px;">{{ sport.type }}</span>
+          <span flex></span>
+          <i class="material-icons" style="margin-right:20px;">keyboard_arrow_right</i>
+        </md-list-item>
+      </md-list>
+      <md-divider></md-divider>
+      <md-subheader class="md-no-sticky">Прочие записи календаря</md-subheader>
+
+      <md-list class="md-dense" flex>
+        <md-list-item class="md-1-line" ng-repeat="item in ['День отдыха', 'Измерение', 'Соревнование']"
+                      ng-click="$ctrl.pass">
+          <i class="material-icons">event_seat</i>
+          <span style="margin-left: 20px;">{{ item }}</span>
+        </md-list-item>
+        <md-divider></md-divider>
+        <div layout="row">
+          <span flex="40"></span>
+          <md-button type="button" flex="60" class="md-list-item-text  md-right  md-primary" layout="column">
+            Загрузить из файла
+          </md-button>
+        </div>
+
+      </md-list>
+    </md-content>
+
+  </div>
+
+  <div flex ng-if="$ctrl.ActivityType" ng-class=" $ctrl.ActivityType ? 'slide-right': ''">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <span>Выберите тип задания</span>
+      </div>
+    </md-toolbar>
+    <md-divider></md-divider>
+    <md-content>
+      <md-list class="md-dense" flex>
+        <md-subheader class="md-no-sticky">{{$ctrl.sel_sport}}</md-subheader>
+        <md-list-item class="md-1-line" ng-repeat="item in $ctrl.sel_cat" ng-click="$ctrl.showActivityKind(item)">
+          {{ item }}
+        </md-list-item>
+      </md-list>
+    </md-content>
+  </div>
+
+  <div flex ng-if="$ctrl.ActivityKind">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <span>Выберите способ создания</span>
+      </div>
+    </md-toolbar>
+    <md-divider></md-divider>
+    <md-content>
+      <md-list class="md-dense" flex>
+        <md-subheader class="md-no-sticky">{{$ctrl.sel_sport}} {{$ctrl.sel_kind}}</md-subheader>
+        <div layout="row">
+          <i class="material-icons" style="margin: 16px; font-size: 2rem;">list</i>
+          <span style="margin: 16px;font-size: 1.5rem;">Сегменты</span>
+          <md-switch class="md-list-item-text" ng-model="$ctrl.ActivityKindSwitch" aria-label="Сегменты">
+          </md-switch>
+        </div>
+
+        <div ng-if="$ctrl.ActivityKindSwitch" flex>
+          <md-list-item class="md-3-line" ng-repeat="template in $ctrl.templates">
+            <div class="md-list-item-text" layout="column">
+              <div>{{template.notes}}</div>
+              <div>{{template.comment}}</div>
+              <span flex></span>
+              <div class="md-right">{{template.when}}</div>
+
+
+            </div>
+          </md-list-item>
+        </div>
+
+        <md-divider></md-divider>
+
+      </md-list>
+      <div layout="row" layout-align="end center" flex>
+        <span flex="40"></span>
+        <md-button type="button" flex="60" class="md-list-item-text  md-right md-primary" layout="column">
+          Создать вручную
+        </md-button>
+      </div>
+    </md-content>
+  </div>
+
+
+</div>
+</div>
+
+<div hide-gt-sm flex>
+  qqqqqqqqqq<br>
+  qqqqqqqqqqqqqq
+</div>
+mc

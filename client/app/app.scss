@@ -1,0 +1,45 @@
+@import "typography";
+.app {
+  height: 100%;
+  background-color: blue;
+}
+
+.slide-right {
+  transform: translateX(-100%);
+  -webkit-animation-fill-mode:forwards; /*Chrome 16+, Safari 4+*/
+  -moz-animation-fill-mode:forwards; /*FF 5+*/
+  -o-animation-fill-mode:forwards; /*Not implemented yet*/
+  -ms-animation-fill-mode:forwards; /*IE 10+*/
+  animation-fill-mode:forwards; /*when the spec is finished*/
+  -webkit-animation: anim 2s forwards;
+  animation: anim 2s forwards;
+}
+
+@-webkit-keyframes anim {
+  0% {
+    transform: translateX(-100%);
+  }
+  14.28% {
+    transform: translateX(0);
+  }
+  85.71% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes anim {
+  0% {
+    transform: translateX(-100%);
+  }
+  14.28% {
+    transform: translateX(0);
+  }
+  85.71% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

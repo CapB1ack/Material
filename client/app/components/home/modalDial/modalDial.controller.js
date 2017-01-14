@@ -1,0 +1,95 @@
+class ModalDialController {
+  constructor() {
+    'ngInject';
+    this.name = 'modalDial';
+    this.sports = [
+      {
+        type: 'бег',
+        category:[
+          '100-метровочка',
+          '1 километр',
+          '3 километра',
+          '3 километра в химзащите',
+          '10 километров в противогазе',
+
+        ]
+      },
+      {
+        type: 'плавание',
+        category:[
+          'брасс',
+          'на спине',
+          'кроль',
+          'медленно',
+        ]
+
+      },
+      {
+        type: 'биатлон',
+        category:[
+          'эстафета',
+          'спринт',
+          'на выживание',
+          'командный',
+        ]
+      },
+      {
+        type: 'стрельба',
+        category:[
+          'по мишени',
+          'в биатлоне',
+          'на выживание',
+          'ради удовольствия',
+        ]
+
+
+      },
+      {
+        type: 'шашки',
+        category:[
+          'быстрые',
+          'поддавки',
+          'на выживание',
+          'на щелбаны',
+        ]
+      }
+          ];
+    this.templates = [
+      {
+        when: '3:08PM',
+        notes: "супер-тренировка",
+        comment:'комментарий'
+      },
+      {
+        when: '5:08PM',
+        notes: "так себе тренировка, устал",
+        comment:'комментарий'
+      },
+      {
+        when: '6:08PM',
+        notes: "тренировкаааааааааааа",
+        comment:'комментарий'
+      },
+      {
+        when: '7:08PM',
+        notes: "прогулял и пил пивас в падике",
+        comment:'комментарий'
+      },
+    ];
+    this.ActivityType = false;
+    this.ActivityKind = false;
+    this.ActivityKindSwitch = false;
+  }
+  showActivityType(sport, categories){
+    this.sel_sport = sport;
+    this.sel_cat = categories;
+    this.ActivityType = true;
+  }
+
+  showActivityKind(item) {
+    this.ActivityKind = true;
+    this.sel_kind = item;
+  }
+}
+
+export default ModalDialController;
