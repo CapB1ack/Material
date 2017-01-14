@@ -4,7 +4,9 @@ import './modalDial.scss';
 
 let modalDialComponent = {
   restrict: 'E',
-  bindings: {},
+  bindings: {
+    onData: '&'
+  },
   template,
   controller
 };

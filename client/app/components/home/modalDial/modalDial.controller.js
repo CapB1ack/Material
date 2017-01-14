@@ -79,14 +79,24 @@ class ModalDialController {
     this.ActivityType = false;
     this.ActivityKind = false;
     this.ActivityKindSwitch = false;
+    this.act_p =1;
   }
-  showActivityType(sport, categories){
+  sendData(data){
+    this.onData({data: data})
+  }
+  move(direction){
+    direction ? this.act_p++ : this.act_p--;
+
+  }
+  showActivityType(sport, categories, direction=undefined){
+    direction ? this.act_p++ : this.act_p--;
     this.sel_sport = sport;
     this.sel_cat = categories;
     this.ActivityType = true;
   }
 
-  showActivityKind(item) {
+  showActivityKind(item, direction=undefined) {
+    direction ? this.act_p++ : this.act_p--;
     this.ActivityKind = true;
     this.sel_kind = item;
   }

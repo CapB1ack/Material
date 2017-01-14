@@ -7,9 +7,13 @@ class HomeController {
 
   openModal() {
     this.$mdDialog.show({
-      template:`<modal-dial></modal-dial>`,
+      template:`<modal-dial on-data="$ctrl.getData(data)"></modal-dial>`,
       clickOutsideToClose: false
     })
+  }
+
+  getData(data){
+    this.data=data;
   }
 }
 
