@@ -1,11 +1,11 @@
 class ModalDialController {
-  constructor() {
+  constructor($mdDialog) {
     'ngInject';
-    this.name = 'modalDial';
+    this.$mdDialog = $mdDialog;
     this.sports = [
       {
         type: 'бег',
-        category:[
+        category: [
           '100-метровочка',
           '1 километр',
           '3 километра',
@@ -16,7 +16,7 @@ class ModalDialController {
       },
       {
         type: 'плавание',
-        category:[
+        category: [
           'брасс',
           'на спине',
           'кроль',
@@ -26,7 +26,7 @@ class ModalDialController {
       },
       {
         type: 'биатлон',
-        category:[
+        category: [
           'эстафета',
           'спринт',
           'на выживание',
@@ -35,7 +35,7 @@ class ModalDialController {
       },
       {
         type: 'стрельба',
-        category:[
+        category: [
           'по мишени',
           'в биатлоне',
           'на выживание',
@@ -46,60 +46,76 @@ class ModalDialController {
       },
       {
         type: 'шашки',
-        category:[
+        category: [
           'быстрые',
           'поддавки',
           'на выживание',
           'на щелбаны',
         ]
       }
-          ];
+    ];
     this.templates = [
       {
         when: '3:08PM',
         notes: "супер-тренировка",
-        comment:'комментарий'
+        comment: 'комментарий'
       },
       {
         when: '5:08PM',
         notes: "так себе тренировка, устал",
-        comment:'комментарий'
+        comment: 'комментарий'
       },
       {
         when: '6:08PM',
         notes: "тренировкаааааааааааа",
-        comment:'комментарий'
+        comment: 'комментарий'
       },
       {
         when: '7:08PM',
         notes: "прогулял и пил пивас в падике",
-        comment:'комментарий'
+        comment: 'комментарий'
       },
     ];
     this.ActivityType = false;
     this.ActivityKind = false;
     this.ActivityKindSwitch = false;
-    this.act_p =1;
+    this.act_p = 1;
   }
-  sendData(data){
+
+  sendData(data) {
     this.onData({data: data})
   }
-  move(direction){
+
+  move(direction) {
     direction ? this.act_p++ : this.act_p--;
 
   }
-  showActivityType(sport, categories, direction=undefined){
+
+  showActivityType(sport, categories, direction = undefined) {
     direction ? this.act_p++ : this.act_p--;
     this.sel_sport = sport;
     this.sel_cat = categories;
     this.ActivityType = true;
   }
 
-  showActivityKind(item, direction=undefined) {
+  showActivityKind(item, direction = undefined) {
     direction ? this.act_p++ : this.act_p--;
     this.ActivityKind = true;
     this.sel_kind = item;
+    console.log('-->>', this.sel_cat, '-', this.sel_sport,'-', this.sel_kind)
   }
+
+  hide() {
+    this.$mdDialog.hide();
+  };
+
+  cancel() {
+    this.$mdDialog.cancel();
+  };
+
+  answer(answer) {
+    this.$mdDialog.hide(answer);
+  };
 }
 
 export default ModalDialController;

@@ -1,3 +1,6 @@
+import tpl from './modalDial/modalDial.html';
+import ctrl from './modalDial/modalDial.controller';
+
 class HomeController {
   constructor($mdDialog) {
     'ngInject';
@@ -7,9 +10,20 @@ class HomeController {
 
   openModal() {
     this.$mdDialog.show({
-      template:`<modal-dial on-data="$ctrl.getData(data)"></modal-dial>`,
-      clickOutsideToClose: false
+      template: tpl,
+      controller: ctrl,
+      controllerAs:'$ctrl',
+      bindToController: true,
+      clickOutsideToClose: false,
+      parent: angular.element(document.body),
+      autoWrap: true
+
     })
+      .then((answer) =>{
+        this.status = 'В модальном окне выбрано: "' + answer + '".';
+      }, () => {
+        this.status = 'Диалог отменен.';
+      });
   }
 
   getData(data){
