@@ -5,7 +5,7 @@ import './modalDial.scss';
 let modalDialComponent = {
   restrict: 'E',
   bindings: {
-    onData: '&'
+    sportsData: '<'
   },
   template,
   controller

@@ -1,85 +1,23 @@
 class ModalDialController {
-  constructor($mdDialog) {
+  constructor($mdDialog, $mdMedia,$mdTheming, DataService) {
     'ngInject';
     this.$mdDialog = $mdDialog;
-    this.sports = [
-      {
-        type: 'бег',
-        category: [
-          '100-метровочка',
-          '1 километр',
-          '3 километра',
-          '3 километра в химзащите',
-          '10 километров в противогазе',
+    this.DataService = DataService;
+    this.$mdMedia = $mdMedia;
 
-        ]
-      },
-      {
-        type: 'плавание',
-        category: [
-          'брасс',
-          'на спине',
-          'кроль',
-          'медленно',
-        ]
+    $mdTheming.generateTheme('altTheme');
 
-      },
-      {
-        type: 'биатлон',
-        category: [
-          'эстафета',
-          'спринт',
-          'на выживание',
-          'командный',
-        ]
-      },
-      {
-        type: 'стрельба',
-        category: [
-          'по мишени',
-          'в биатлоне',
-          'на выживание',
-          'ради удовольствия',
-        ]
-
-
-      },
-      {
-        type: 'шашки',
-        category: [
-          'быстрые',
-          'поддавки',
-          'на выживание',
-          'на щелбаны',
-        ]
-      }
-    ];
-    this.templates = [
-      {
-        when: '3:08PM',
-        notes: "супер-тренировка",
-        comment: 'комментарий'
-      },
-      {
-        when: '5:08PM',
-        notes: "так себе тренировка, устал",
-        comment: 'комментарий'
-      },
-      {
-        when: '6:08PM',
-        notes: "тренировкаааааааааааа",
-        comment: 'комментарий'
-      },
-      {
-        when: '7:08PM',
-        notes: "прогулял и пил пивас в падике",
-        comment: 'комментарий'
-      },
-    ];
     this.ActivityType = false;
     this.ActivityKind = false;
     this.ActivityKindSwitch = false;
     this.act_p = 1;
+  }
+
+  $onInit(){
+    this.DataService.API().query({type:'toolbar.json', id:''}).$promise
+      .then((responce) => { this.toolbars = responce },
+        (error) => { console.log('error:', error) }
+      )
   }
 
   sendData(data) {

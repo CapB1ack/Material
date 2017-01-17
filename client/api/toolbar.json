@@ -1,0 +1,14 @@
+[
+  {
+    "name": "День отдыха",
+    "icon":"event_seat"
+  },
+  {
+    "name": "Измерение",
+    "icon":"assessment"
+  },
+  {
+    "name": "Соревнование",
+    "icon":"star_rate"
+  }
+]
