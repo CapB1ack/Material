@@ -1,3 +1,6 @@
-<md-button class="md-raised" ng-click="$ctrl.openModal()">TEST
-  <i class="material-icons">face</i></md-button>
-{{$ctrl.status}}
+<md-content>
+  <md-button class="md-raised" ng-click="$ctrl.openModal()">Запустить визард!
+    <md-icon class="material-icons" aria-label="Запустить">face</md-icon>
+  </md-button>
+  <md-subheader class="md-primary">{{$ctrl.status || 'Здесь будет отображен выбор в визарде'}}</md-subheader>
+</md-content>

@@ -1,53 +1,49 @@
-<md-dialog aria-label="Выберите тип записи календаря">
-  <form ng-cloak>
-      <md-toolbar md-theme="{{ $ctrl.$mdMedia('gt-sm') ? 'altTheme':'primary' }}" >
-        <div class="md-toolbar-tools">
-          <h2>Выберите тип записи календаря</h2>
-          <span flex></span>
-          <md-button class="md-icon-button" ng-click="">
-            <md-icon class="material-icons"  aria-label="Закрыть">clear</md-icon>
+<md-dialog aria-label="Выберите тип записи календаря" md-theme="{{ $ctrl.$mdMedia('gt-sm') ? 'altTheme' : 'primary' }}">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Выберите тип записи календаря</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="$ctrl.cancel()">
+                    <md-icon class="material-icons" aria-label="Закрыть">clear</md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
 
-          </md-button>
-        </div>
-      </md-toolbar>
-
-
-      <md-divider></md-divider>
-      <md-dialog-content flex layout="column">
-
-        <md-subheader class="md-no-sticky">Виды спорта</md-subheader>
-        <md-dialog-content flex>
-          <md-list class="md-dense" flex>
-            <md-list-item class="md-1-line" layout="row" ng-repeat="sport in $ctrl.sportsData track by $index"
-                          ng-click="$ctrl.showActivityType(sport.type, sport.category)">
-              <i class="material-icons">{{ sport.icon }}</i>
-              <span style="margin-left: 20px;">{{ sport.type }}</span>
-              <span flex></span>
-              <i class="material-icons" style="margin-right:20px;">keyboard_arrow_right</i>
-            </md-list-item>
-          </md-list>
-        </md-dialog-content>
-
-        <md-dialog-content flex="nogrow">
         <md-divider></md-divider>
-        <md-subheader class="md-no-sticky">Прочие записи календаря</md-subheader>
+        <md-dialog-content flex layout="column">
 
-        <md-list class="md-dense" flex>
-          <md-list-item class="md-1-line" ng-repeat="item in $ctrl.toolbars"
-                        ng-click="$ctrl.pass">
-            <i class="material-icons">{{item.icon}}</i>
-            <span style="margin-left: 20px;">{{ item.name }}</span>
-          </md-list-item>
-        </md-list>
+            <md-subheader class="md-accent">Виды спорта</md-subheader>
+            <md-dialog-content flex>
+                <md-list class="md-dense" flex>
+                    <md-list-item class="md-1-line" layout="row" ng-repeat="sport in $ctrl.sportsData track by $index"
+                                  ng-click="$ctrl.answer(sport.type)">
+                        <i class="material-icons">{{ sport.icon }}</i>
+                        <span class="span--text" style="margin-left: 20px;">{{ sport.type }}</span>
+                        <span flex></span>
+                        <md-icon class="material-icons" aria-label="Далее" style="margin-right:20px;">keyboard_arrow_right</md-icon>
+                    </md-list-item>
+                </md-list>
+            </md-dialog-content>
+
+            <md-dialog-content flex="nogrow">
+                <md-divider></md-divider>
+                <md-subheader class="md-accent">Прочие записи календаря</md-subheader>
+
+                <md-list class="md-dense" flex>
+                    <md-list-item class="md-1-line" ng-repeat="item in $ctrl.toolbars"
+                                  ng-click="$ctrl.pass">
+                        <i class="material-icons">{{item.icon}}</i>
+                        <span class="span--text" style="margin-left: 20px;">{{ item.name }}</span>
+                    </md-list-item>
+                </md-list>
+            </md-dialog-content>
         </md-dialog-content>
 
-      </md-dialog-content>
-
-    <md-dialog-actions layout="row" layout-align="end">
-      <span flex></span>
-      <md-button>Загрузить из файла</md-button>
-
-    </md-dialog-actions>
-  </form>
+        <md-dialog-actions layout="row" layout-align="end">
+            <span flex></span>
+            <md-button class="md-accent" ng-click="$ctrl.answer('Загрузить из файла')">Загрузить из файла</md-button>
+        </md-dialog-actions>
+    </form>
 
 </md-dialog>

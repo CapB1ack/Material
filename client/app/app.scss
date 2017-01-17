@@ -4,7 +4,7 @@ html{
 }
 .app {
   height: 100%;
-  background-color: blue;
+  background-image: url('https://subtlepatterns.com/patterns/new_year_background.png');
 }
 
 .slide-right {
@@ -16,6 +16,17 @@ html{
   animation-fill-mode:forwards; /*when the spec is finished*/
   -webkit-animation: anim 2s forwards;
   animation: anim 2s forwards;
+}
+
+md-list-item:hover  .span--text {
+  color: rgb(83, 130, 183);
+}
+
+md-dialog-actions{
+  border-top: 1px solid rgba(0,0,0,0.12)
+}
+md-subheader {
+  background-color: transparent;
 }
 
 @-webkit-keyframes anim {

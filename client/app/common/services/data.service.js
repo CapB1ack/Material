@@ -1,3 +1,11 @@
+/**
+ * @ngdoc service
+ * @name DataService
+ *
+ * @description
+ * http request for async data from backend;
+ */
+
 class DataService {
 
     constructor($resource) {
