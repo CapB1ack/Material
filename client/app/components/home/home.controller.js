@@ -33,6 +33,7 @@ class HomeController {
         /**
          * 100% = salePercent
          * percentPrice% = x
+         * gfh
          */
         let percentPrice = 100 * current / total;
         let amountSale = percentPrice * this.salePercent / 100.0 ;
