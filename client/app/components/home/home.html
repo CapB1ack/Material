@@ -1,6 +1,54 @@
-<md-content>
-  <md-button class="md-raised" ng-click="$ctrl.openModal()">Запустить визард!
-    <md-icon class="material-icons" aria-label="Запустить">face</md-icon>
-  </md-button>
-  <md-subheader class="md-primary">{{$ctrl.status || 'Здесь будет отображен выбор в визарде'}}</md-subheader>
-</md-content>
+<div ng-cloak>
+
+    <md-toolbar class="md-primary">
+        <div class="md-toolbar-tools">
+            <div flex="30"></div>
+            <md-input-container>
+                <label>Продукт</label>
+                <input type="text" ng-model="$ctrl.newProduct.name">
+            </md-input-container>
+
+            <md-input-container>
+                <label>Цена</label>
+                <input ng-model="$ctrl.newProduct.price" type="text">
+            </md-input-container>
+
+            <md-button ng-click="$ctrl.onAddProduct($ctrl.newProduct)">
+                <md-icon class="material-icons">save</md-icon>
+                <span>добавить</span>
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-content layout-padding>
+
+        <md-card>
+            <md-card-content>
+                <md-list>
+
+                    <md-subheader class="md-no-sticky">
+                        <span flex="15">Корзина</span>
+                        <md-input-container>
+                            <label>Размер скидки</label>
+                            <input ng-model="$ctrl.salePercent" type="number" step="1">
+                        </md-input-container>
+                    </md-subheader>
+                    <md-list-item>
+                        <p> Название продукта </p>
+                        <p> Цена продукта </p>
+                        <p> Цена продукта со скидкой</p>
+                    </md-list-item>
+                    <md-list-item ng-repeat="product in $ctrl.currentProducts track by $index">
+                        <p> {{ product.name }} </p>
+                        <p> {{ product.price }} </p>
+                        <p> {{ product.priceWithSale }} </p>
+                    </md-list-item>
+                </md-list>
+
+            </md-card-content>
+        </md-card>
+
+    </md-content>
+
+</div>
+

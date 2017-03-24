@@ -7,46 +7,43 @@
  */
 
 class HomeController {
-    constructor($mdDialog, DataService) {
+    constructor() {
         'ngInject';
-
-        this.$mdDialog = $mdDialog;
-        this.DataService = DataService;
+        this.newProduct = {};
+        this.currentProducts = [];
+        this.salePercent = 10;
     }
 
-    $onInit() {
-        this.DataService.API().query({type: 'sports.json', id: ''}).$promise
-            .then((responce) => {
-                    this.sports = responce
-                },
-                (error) => {
-                    console.log('error:', error)
-                }
-            )
+    clearNewProd(){
+        this.newProduct = {};
+    }
+
+    onAddProduct(product){
+        this.currentProducts.push(product);
+        this.clearNewProd();
+        this.calculateSales();
+    }
+
+    calculateSales() {
+        let totalPrice = this.sum(this.currentProducts, 'price');
+        this.currentProducts.map(el=> el.priceWithSale = this.productSaleAmount(totalPrice, el.price))
+    }
+
+    productSaleAmount(total, current){
+        /**
+         * 100% = salePercent
+         * percentPrice% = x
+         */
+        let percentPrice = 100 * current / total;
+        let amountSale = percentPrice * this.salePercent / 100.0 ;
+        console.log(current, 'proc:', percentPrice, 'skidka', amountSale)
+        return current - amountSale;
+
+
 
     }
 
-    openModal(ev) {
-        this.$mdDialog.show({
-            controller: () => {
-                return this
-            },
-            controllerAs: '$ctrl',
-            bindToController: true,
-            template: `<modal-dial sports-data="$ctrl.sports" class="md-dialog-container" style="height: 100%"></modal-dial>`,
-            clickOutsideToClose: false,
-            parent: angular.element(document.body),
-            autoWrap: false,
-            fullscreen: true,
-            targetEvent: ev
-        })
-            .then((answer) => {
-                this.status = 'В модальном окне выбрано: "' + answer + '".';
-            }, () => {
-                this.status = 'Диалог отменен.';
-            });
-    }
-
+    sum(items, prop) { return items.reduce((a, b) =>  +a + +b[prop], 0); }
 }
 
 export default HomeController;
