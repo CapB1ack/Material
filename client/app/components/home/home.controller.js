@@ -40,6 +40,7 @@ class HomeController {
         }
         console.log('maxPrice', maxPrice, 'indexes', maxIndexes)
 
+
         while(this._sale){
             maxIndexes.map(el =>{
                 if (this._sale >0){
