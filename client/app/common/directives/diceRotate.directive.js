@@ -18,7 +18,7 @@ function diceRotate() {
                     'transition': `all linear ${speed}s`
                 });
             };
-            scope.$watch(attrs.speed, newSpeed => speed = newSpeed);
+            scope.$watch(attrs.speed, newSpeed => speed = 1 - newSpeed);
             scope.$watch(attrs.scale, newScale => {
                 scale = newScale !== void 0 ? newScale : scale;
                 transformer();
