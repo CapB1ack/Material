@@ -1,10 +1,12 @@
 import angular from 'angular';
 import commonServicesModule from './services/';
+import commonDirectivesModule from './directives/';
 
 let commonModule = angular.module('app.common', [
-  commonServicesModule,
+    commonServicesModule,
+    commonDirectivesModule
 ])
 
-.name;
+    .name;
 
 export default commonModule;

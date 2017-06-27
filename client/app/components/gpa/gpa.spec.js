@@ -1,16 +1,16 @@
-import ModalDialModule from './modalDial'
-import ModalDialController from './modalDial.controller';
-import ModalDialComponent from './modalDial.component';
-import ModalDialTemplate from './modalDial.html';
+import GpaModule from './gpa'
+import GpaController from './gpa.controller';
+import GpaComponent from './gpa.component';
+import GpaTemplate from './gpa.html';
 
-describe('ModalDial', () => {
+describe('Gpa', () => {
   let $rootScope, makeController;
 
-  beforeEach(window.module(ModalDialModule));
+  beforeEach(window.module(GpaModule));
   beforeEach(inject((_$rootScope_) => {
     $rootScope = _$rootScope_;
     makeController = () => {
-      return new ModalDialController();
+      return new GpaController();
     };
   }));
 
@@ -30,20 +30,20 @@ describe('ModalDial', () => {
     // template specs
     // tip: use regex to ensure correct bindings are used e.g., {{  }}
     it('has name in template [REMOVE]', () => {
-      expect(ModalDialTemplate).to.match(/{{\s?\$ctrl\.name\s?}}/g);
+      expect(GpaTemplate).to.match(/{{\s?\$ctrl\.name\s?}}/g);
     });
   });
 
   describe('Component', () => {
       // component/directive specs
-      let component = ModalDialComponent;
+      let component = GpaComponent;
 
       it('includes the intended template',() => {
-        expect(component.template).to.equal(ModalDialTemplate);
+        expect(component.template).to.equal(GpaTemplate);
       });
 
       it('invokes the right controller', () => {
-        expect(component.controller).to.equal(ModalDialController);
+        expect(component.controller).to.equal(GpaController);
       });
   });
 });

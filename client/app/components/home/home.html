@@ -1,6 +1,71 @@
+<!--
 <md-content>
   <md-button class="md-raised" ng-click="$ctrl.openModal()">Запустить визард!
     <md-icon class="material-icons" aria-label="Запустить">face</md-icon>
   </md-button>
   <md-subheader class="md-primary">{{$ctrl.status || 'Здесь будет отображен выбор в визарде'}}</md-subheader>
 </md-content>
+-->
+<div ng-cloak>
+    <md-content layout="row" flex>
+        <md-card flex layout="column" layout-align="center center">
+            <md-card-title>
+                DEMO ROTATE
+            </md-card-title>
+            <md-card-actions>
+                <md-button
+                        ng-disabled="!$ctrl.adding"
+                        ng-click="$ctrl.rotate(-90)">
+                    <md-icon class="material-icons">undo</md-icon>
+                </md-button>
+                <md-button ng-click="$ctrl.addNew()">NEW!</md-button>
+                <md-button
+                        ng-disabled="!$ctrl.adding"
+                        ng-click="$ctrl.rotate(90)">
+                    <md-icon class="material-icons">redo</md-icon>
+                </md-button>
+            </md-card-actions>
+            <md-card-content layout="row">
+                <div flex="70" layout="column" layout-align="center center">
+                    <div>
+                        <div ng-if="$ctrl.adding" dice-rotate degrees="$ctrl.rotateAngle" speed="$ctrl.speedAnimation"
+                             scale="$ctrl.sizeScale"
+                             class="dice">
+                            <div class="dice-edge"
+                                 ng-class="$ctrl.selectedDice === 'top' ? 'dice--active' :''"
+                                 ng-click="$ctrl.diceSelected('top')"
+                                 ng-if="!$ctrl.topDice"></div>
+                            <dice num="$ctrl.topDice"
+                                  ng-click="$ctrl.diceSelected('top')"
+                                  ng-if="$ctrl.topDice"></dice>
+
+                            <div class="dice-edge"
+                                 ng-click="$ctrl.diceSelected('bot')"
+                                 ng-class="$ctrl.selectedDice === 'bot' ? 'dice--active' :''"
+                                 ng-if="!$ctrl.botDice"></div>
+                            <dice num="$ctrl.botDice"
+                                  ng-click="$ctrl.diceSelected('bot')"
+                                  ng-if="$ctrl.botDice"></dice>
+                        </div>
+                    </div>
+                    <div style="width: 90vw">
+                        <span>Speed</span>
+                        <md-slider flex class="md-warn" md-discrete ng-model="$ctrl.speedAnimation" step="0.1" min="0"
+                                   max="1"
+                                   aria-label="rating"></md-slider>
+                        <span>Scale</span>
+                        <md-slider flex class="md-warn" md-discrete ng-model="$ctrl.sizeScale" step="0.1" min="1"
+                                   max="2"
+                                   aria-label="scale"></md-slider>
+                    </div>
+                </div>
+                <span flex="5"></span>
+                <div flex>
+                    <div ng-repeat="e in [1,2,3,4,5,6]">
+                        <dice num="e" ng-click="$ctrl.onSelectListDice(e)"></dice>
+                    </div>
+                </div>
+            </md-card-content>
+        </md-card>
+    </md-content>
+</div>

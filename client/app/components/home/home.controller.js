@@ -12,6 +12,9 @@ class HomeController {
 
         this.$mdDialog = $mdDialog;
         this.DataService = DataService;
+        this.rotateAngle = 0;
+
+
     }
 
     $onInit() {
@@ -26,27 +29,30 @@ class HomeController {
 
     }
 
-    openModal(ev) {
-        this.$mdDialog.show({
-            controller: () => {
-                return this
-            },
-            controllerAs: '$ctrl',
-            bindToController: true,
-            template: `<modal-dial sports-data="$ctrl.sports" class="md-dialog-container" style="height: 100%"></modal-dial>`,
-            clickOutsideToClose: false,
-            parent: angular.element(document.body),
-            autoWrap: false,
-            fullscreen: true,
-            targetEvent: ev
-        })
-            .then((answer) => {
-                this.status = 'В модальном окне выбрано: "' + answer + '".';
-            }, () => {
-                this.status = 'Диалог отменен.';
-            });
+    addNew() {
+        this.topDice = void 0;
+        this.botDice = void 0;
+        this.adding = true;
+
+    }
+    diceSelected(dice) {
+        this.selectedDice = dice;
     }
 
+    onSelectListDice(ev){
+        console.log('select ev:', ev)
+    }
+
+    onSelectListDice(index) {
+        if(this.selectedDice === void 0) return;
+        this.selectedDice === 'top' ? this.topDice = index : this.botDice = index;
+        this.selectedDice = void 0;
+    }
+
+    rotate(ang) {
+        this.rotateAngle += ang;
+        console.log(this.rotateAngle)
+    };
 }
 
 export default HomeController;

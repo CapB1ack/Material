@@ -1,4 +1,4 @@
-function AppConfig($locationProvider, $mdThemingProvider) {
+function AppConfig($locationProvider, $mdThemingProvider, $stateProvider) {
     'ngInject';
 
     $locationProvider.html5Mode(true).hashPrefix('!');
@@ -52,6 +52,12 @@ function AppConfig($locationProvider, $mdThemingProvider) {
         .accentPalette('purple');
 
     $mdThemingProvider.alwaysWatchTheme(true);
+
+    $stateProvider
+        .state('app', {
+            url:'/testTask',
+            component: 'app',
+        })
 }
 
 export default AppConfig;

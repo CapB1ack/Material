@@ -1,12 +1,12 @@
 import angular from 'angular';
 import Home from './home/home';
-import modalDialComponent from './home/modalDial/modalDial.component';
+import gpaModule from './gpa/'
 
 let componentModule = angular.module('app.components', [
-  Home
+  Home,
+    gpaModule
 ])
 
-.component('modalDial', modalDialComponent)
 .name;
 
 export default componentModule;

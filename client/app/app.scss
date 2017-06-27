@@ -57,3 +57,16 @@ md-subheader {
     transform: translateX(0);
   }
 }
+dice::-moz-focus-outer{
+  border: 0 !important;
+  outline: none !important;
+}
+dice::-moz-focus-inner{
+  border: 0 !important;
+  outline: none !important;
+}
+dice{
+  border: 0 !important;
+  outline: none !important;
+  cursor: pointer;
+}
