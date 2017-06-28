@@ -1,4 +1,21 @@
 .gpa--header {
   border: 1px solid black;
   border-radius: 0.7rem 0.7rem 0 0;
+  cursor:pointer;
+  background-color: #a8a8a8;
+  outline: none !important;
+  margin-bottom: 2px;
+  &:hover, &:active, &:focus{
+    outline: none !important;
+    background-color: rgba(0,0,0,.1);
+    border-color: orange;
+
+  }
+  & > md-icon {
+    cursor: pointer;
+  }
+}
+.active{
+  border-bottom: 0 !important;
+  background-color: white;
 }

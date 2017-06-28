@@ -2,20 +2,69 @@
     <md-content layout="row" flex>
         <md-card flex layout="column">
             <md-card-title>
-                DEMO GPA
+                <span>DEMO GPA</span>
+                <span flex> index: {{$ctrl.selectedClass}}</span>
+                <span>AVERAGE GPA: {{$ctrl.totalGPA}} </span>
             </md-card-title>
             <md-card-content layout="column">
-
                 <div layout="row" layout-align="start center">
-                    <div flex="10" class="gpa--header" ng-repeat="i in [1,2,3,4,5]">
-                        <span>{{i}}</span>
-                        <md-icon class="material-icons">delete</md-icon>
+                    <div flex="20" class="gpa--header" layout="row" layout-align="center center"
+                         ng-repeat="_class in $ctrl.data track by $index"
+                         ng-class="$index === $ctrl.selectedClass ? 'active' : ''"
+                         ng-click="$ctrl.selectedClass = $index">
+                        <span flex>Grade: {{_class.grade}}</span>
+                        <span flex="10"></span>
+                        <md-icon ng-click="$ctrl.deleteGrade($index)"
+                                 class="material-icons">clear
+                        </md-icon>
                     </div>
                     <div flex="5">
-                        <md-icon class="material-icons">add</md-icon>
+                        <md-icon ng-click="$ctrl.addGrade()"
+                                 style="cursor:pointer"
+                                 class="material-icons">add
+                        </md-icon>
                     </div>
                 </div>
-
+                <hr>
+                <div layout="column">
+                    <div layout="row">
+                        <md-input-container flex="20">
+                            <label>Grade</label>
+                            <input ng-model="$ctrl.data[$ctrl.selectedClass].grade">
+                        </md-input-container>
+                    </div>
+                    <md-list ng-cloak flex>
+                        <md-list-item>
+                            <p flex="45">NAME</p>
+                            <p flex="45">GPA</p>
+                        </md-list-item>
+                        <md-divider></md-divider>
+                        <md-list-item ng-repeat="child in $ctrl.data[$ctrl.selectedClass].childes track by $index">
+                            <p flex="45"> {{ child.name }} </p>
+                            <p flex="45"> {{ child.gpa }} </p>
+                            <md-icon ng-click="$ctrl.removeStudent($index)" class="md-secondary material-icons">clear
+                            </md-icon>
+                        </md-list-item>
+                        <md-divider></md-divider>
+                    </md-list>
+                    <div layout="row">
+                        <md-input-container flex="45">
+                            <label>Name</label>
+                            <input ng-model="$ctrl.newStudent.name">
+                        </md-input-container>
+                        <md-input-container flex="45">
+                            <label>Gpa</label>
+                            <input ng-model="$ctrl.newStudent.gpa">
+                        </md-input-container>
+                        <md-input-container>
+                            <md-button class="md-icon-button"
+                                       ng-click="$ctrl.addStudent()"
+                                       aria-label="Favorite">
+                                <md-icon class="material-icon">save</md-icon>
+                            </md-button>
+                        </md-input-container>
+                    </div>
+                </div>
             </md-card-content>
         </md-card>
     </md-content>

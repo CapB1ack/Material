@@ -17,17 +17,7 @@ class HomeController {
 
     }
 
-    $onInit() {
-        this.DataService.API().query({type: 'sports.json', id: ''}).$promise
-            .then((responce) => {
-                    this.sports = responce
-                },
-                (error) => {
-                    console.log('error:', error)
-                }
-            )
 
-    }
 
     addNew() {
         this.topDice = void 0;

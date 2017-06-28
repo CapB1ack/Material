@@ -1,0 +1,20 @@
+[
+  {
+    "grade": "8a",
+    "childes":[
+      {"name": "Vasya", "gpa": 4.5},
+      {"name": "Petya", "gpa": 3.5},
+      {"name": "Ivan", "gpa": 4.5},
+      {"name": "Stepan", "gpa": 3.5}
+    ]
+  },
+  {
+    "grade": "10a",
+    "childes":[
+      {"name": "MAsha", "gpa": 4.5},
+      {"name": "Katya", "gpa": 3.5},
+      {"name": "Ivan", "gpa": 4.5},
+      {"name": "Stepan", "gpa": 3.5}
+    ]
+  }
+]
