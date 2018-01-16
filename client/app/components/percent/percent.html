@@ -4,20 +4,17 @@
       <span>R</span>
       <div style="overflow:hidden;padding:20px; width: 500px">
         <md-slider
-                ng-change="$ctrl.handleChange($index)"
-                flex min="0" max="100" step="0.01" ng-model="row.percent" aria-label="red" id="red-slider">
+                ng-change="$ctrl.slider($index)"
+                ng-mousedown="$ctrl.sliderDown($index)"
+                flex min="0" max="100" step="0.01" ng-model="row.Percent" aria-label="red" id="red-slider">
         </md-slider>
       </div>
       <md-input-container>
         <input flex min="0" max="100" step="0.01"
                style="width: 10rem"
-               ng-change="$ctrl.handleChangeInput($index)"
-               type="number" ng-model="$ctrl.data_copy[$index].percent" aria-label="red" aria-controls="red-slider">
+               type="number" ng-model="row.Percent" aria-label="red" aria-controls="red-slider">
       </md-input-container>
     </md-slider-container>
   </div>
-
-  <div ng-repeat="x in $ctrl.data ">{{x.percent}}</div>
-  <hr>
-  <div ng-repeat="x in $ctrl.data_copy ">{{x.percent}}</div>
+<div>{{$ctrl.total}}</div>
 </div>
