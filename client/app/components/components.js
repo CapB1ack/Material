@@ -1,12 +1,12 @@
 import angular from 'angular';
 import Home from './home/home';
-import gpaModule from './gpa/'
+import gpaModule from './gpa/';
+import percentModule from './percent/'
 
 let componentModule = angular.module('app.components', [
-  Home,
-    gpaModule
+    Home,
+    gpaModule,
+    percentModule
 ])
-
-.name;
-
+    .name;
 export default componentModule;
