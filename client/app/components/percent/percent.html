@@ -1,11 +1,12 @@
 <div>
   <div style="width: 80vw">
-    <md-slider-container ng-repeat="row in $ctrl.data">
+    <md-slider-container ng-repeat="row in $ctrl.data track by $index">
       <span>R</span>
       <div style="overflow:hidden;padding:20px; width: 500px">
         <md-slider
                 ng-change="$ctrl.slider($index)"
-                ng-mousedown="$ctrl.sliderDown($index)"
+                ng-mouseenter="$ctrl.sliderDown($index)"
+                ng-mouseup="$ctrl.handleMouseUp($index)"
                 flex min="0" max="100" step="0.01" ng-model="row.Percent" aria-label="red" id="red-slider">
         </md-slider>
       </div>
@@ -16,5 +17,7 @@
       </md-input-container>
     </md-slider-container>
   </div>
-<div>{{$ctrl.total}}</div>
+<div> Summ: {{$ctrl.total}}</div>
+  <hr>
+  <div ng-repeat="i in $ctrl.data track by $index">{{i['Percent']}}</div>
 </div>

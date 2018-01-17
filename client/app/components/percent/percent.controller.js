@@ -1,43 +1,91 @@
 class PercentController {
-    constructor() {
+    constructor($timeout) {
         'ngInject';
 
-        this.data = [{"Name": "Item 1", "Percent": 0}, {"Name": "Item 2", "Percent": 0}, {
-            "Name": "Item 3",
-            "Percent": 0
-        }];
+        this.data = [
+            {"Name": "Item 1", "Percent": 0},
+            {"Name": "Item 2", "Percent": 0},
+            {"Name": "Item 3", "Percent": 0},
+            {"Name": "Item 4", "Percent": 0}];
         this.checkSummary();
+        this.$timeout = $timeout;
         this.old = angular.copy(this.data);
         this.amount = void 0;
         this.total = void 0;
     }
 
-    sliderDown (index) {
+    sliderDown(index) {
         this.amount = this.data[index]['Percent'];
     }
 
-    slider (index) {
-        const delta = this.data[index]['Percent'] - (this.amount === void 0 ? this.old[index]['Percent'] : this.amount);
-        if(delta < 0) {
+    slider(index) {
+        let delta = this.data[index]['Percent'] - (this.amount === void 0 ? this.old[index]['Percent'] : this.amount);
+        delta = Math.round(delta * 100) / 100;
+        // console.log(delta, this.data[index]['Percent'], this.amount);
+        if (delta < 0) {
             this.smaller(index, delta)
+        } else {
+            this.bigger(index, delta)
         }
+        this.data.map(el => el['Percent'] = Math.round(el['Percent'] * 100) / 100);
+        this.data.map(el => {
+            if (el['Percent'] < 0) {
+                el['Percent'] = 0
+            } else if (el['Percent']> 100) {
+                el['Percent'] = 100
+            }
+        });
+        this.total = this.data.reduce((sum, cur) => sum += cur['Percent'], 0);
+        if ((this.data[index]['Percent'] + 100 - this.total) > 0) {
+            this.data[index]['Percent'] += 100 - this.total;
+            this.total = 100;
+        }
+        if (this.data.some(el => el['Percent'] === 100)) {
+            this.data.map(el => {
+                el['Percent'] = el['Percent'] === 100 ? 100 : 0
+            })
+        }
+
     }
 
-    smaller (index, delta) {
-        const smallerVal = Math.min(...this.data.filter((_, i)=> i !== index).map(e=> e['Percent']));
-        const indexSmallest = this.data.findIndex(e=> e['Percent'] === smallerVal);
+    smaller(index, delta) {
+        const smallerVal = Math.min(...this.data.filter((_, i) => i !== index).map(e => e['Percent']));
+        const indexSmallest = this.data.findIndex(e => e['Percent'] === smallerVal);
         this.data[indexSmallest]['Percent'] += Math.abs(delta);
+//TODO: переход на вторую ветку. если осталось
         this.amount += delta;
-        this.total = this.data.reduce((sum, cur) => sum += cur['Percent'], 0)
+    }
+
+    bigger(index, delta) {
+        const biggestVal = Math.max(...this.data.filter((_, i) => i !== index).map(e => e['Percent']));
+        const indexBiggest = this.data.findIndex(e => e['Percent'] === biggestVal);
+        this.data[indexBiggest]['Percent'] -= delta;
+        this.amount += delta;
+    }
+
+    handleMouseUp(index) {
+        this.old = angular.copy(this.data);
+        this.amount = this.data[index]['Percent']
     }
 
     checkSummary() {
         let delta = 100 - this.data.reduce((sum, cur) => sum += cur['Percent'], 0);
+        if (delta < 0) {
+            const biggestVal = Math.max(...this.data.map(e => e['Percent']));
+            const indexBiggest = this.data.findIndex(e => e['Percent'] === biggestVal);
+            this.data[indexBiggest]['Percent'] += delta
+        }
         let i = 0;
         while (delta > 0) {
-            const elDelta = 100 - this.data[i]['Percent'];
-            this.data[i]['Percent'] += elDelta;
-            delta -= elDelta;
+            let elDelta = 100 - this.data[i]['Percent'];
+            while (elDelta > 0) {
+                this.data[i]['Percent']++;
+                elDelta--;
+                delta--;
+                if (delta === 0) {
+                    return
+                }
+            }
             i++;
         }
     }
