@@ -6,7 +6,9 @@ class PercentController {
             {"Name": "Item 1", "Percent": 0},
             {"Name": "Item 2", "Percent": 0},
             {"Name": "Item 3", "Percent": 0},
-            {"Name": "Item 4", "Percent": 0}];
+            {"Name": "Item 4", "Percent": 0},
+            {"Name": "Item 5", "Percent": 0},
+            {"Name": "Item 6", "Percent": 0}];
         this.checkSummary();
         this.$timeout = $timeout;
         this.old = angular.copy(this.data);
@@ -31,7 +33,7 @@ class PercentController {
         this.data.map(el => {
             if (el['Percent'] < 0) {
                 el['Percent'] = 0
-            } else if (el['Percent']> 100) {
+            } else if (el['Percent'] > 100) {
                 el['Percent'] = 100
             }
         });
@@ -48,11 +50,16 @@ class PercentController {
 
     }
 
+    checkInput (elem){
+        console.log('check', elem);
+        if (elem.value.length > 4) {
+            elem.value = elem.value.slice(0,4);
+        }
+    }
     smaller(index, delta) {
         const smallerVal = Math.min(...this.data.filter((_, i) => i !== index).map(e => e['Percent']));
         const indexSmallest = this.data.findIndex(e => e['Percent'] === smallerVal);
         this.data[indexSmallest]['Percent'] += Math.abs(delta);
-//TODO: переход на вторую ветку. если осталось
         this.amount += delta;
     }
 
@@ -60,7 +67,28 @@ class PercentController {
         const biggestVal = Math.max(...this.data.filter((_, i) => i !== index).map(e => e['Percent']));
         const indexBiggest = this.data.findIndex(e => e['Percent'] === biggestVal);
         this.data[indexBiggest]['Percent'] -= delta;
+        if (this.data[indexBiggest]['Percent'] < 0) {
+            const am = -this.data[indexBiggest]['Percent'];
+            this.data[indexBiggest]['Percent'] = 0;
+            const distributeAmount = (unreleatedAmount, index) => {
+                if (unreleatedAmount < 0.001) {return}
+                const val = Math.max(...this.data.filter((_, i) => i !== index).map(e => e['Percent']));
+                const indVal = this.data.findIndex(e => e['Percent'] === val);
+                this.data[indVal]['Percent'] -= unreleatedAmount;
+                if (this.data[indVal]['Percent'] < 0) {
+                    unreleatedAmount = -this.data[indVal]['Percent'];
+                    this.data[indVal]['Percent'] = 0;
+                    distributeAmount(unreleatedAmount, index)
+                }
+            };
+            distributeAmount(am, index);
+        }
         this.amount += delta;
+    }
+
+
+    handleInputCh (e) {
+        console.log('dddd', e);
     }
 
     handleMouseUp(index) {

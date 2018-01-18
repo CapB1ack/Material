@@ -10,13 +10,22 @@
                 flex min="0" max="100" step="0.01" ng-model="row.Percent" aria-label="red" id="red-slider">
         </md-slider>
       </div>
-      <md-input-container>
-        <input flex min="0" max="100" step="0.01"
-               style="width: 10rem"
-               type="number" ng-model="row.Percent" aria-label="red" aria-controls="red-slider">
-      </md-input-container>
+        <input-validate
+                style="width: 10rem"
+                ng-mouseenter="$ctrl.sliderDown($index)"
+                ng-mouseup="$ctrl.handleMouseUp($index)"
+                ng-model="row['Percent']">
+        </input-validate>
+
+        <!--<input flex min="0" max="100" step="0.01"-->
+               <!--ng-input="$ctrl.checkInput(this)"-->
+               <!--ng-change="$ctrl.slider($index)"-->
+               <!--ng-mouseenter="$ctrl.sliderDown($index)"-->
+               <!--ng-mouseup="$ctrl.handleMouseUp($index)"-->
+               <!--type="number" ng-model="row.Percent" aria-label="red" aria-controls="red-slider">-->
     </md-slider-container>
   </div>
+  <hr>
 <div> Summ: {{$ctrl.total}}</div>
   <hr>
   <div ng-repeat="i in $ctrl.data track by $index">{{i['Percent']}}</div>
