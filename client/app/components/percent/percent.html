@@ -12,6 +12,8 @@
       </div>
         <input-validate
                 style="width: 10rem"
+                index="{{$index}}"
+                callback="$ctrl.slider(value)"
                 ng-mouseenter="$ctrl.sliderDown($index)"
                 ng-mouseup="$ctrl.handleMouseUp($index)"
                 ng-model="row['Percent']">

@@ -20,6 +20,7 @@ class PercentController {
         this.amount = this.data[index]['Percent'];
     }
 
+
     slider(index) {
         let delta = this.data[index]['Percent'] - (this.amount === void 0 ? this.old[index]['Percent'] : this.amount);
         delta = Math.round(delta * 100) / 100;
