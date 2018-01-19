@@ -1,0 +1,18 @@
+<div flex layout="row" layout-align="center center">
+  <input
+          style="height: 2rem"
+          input-validate type="text" ng-model="$ctrl.localInput" ng-change="$ctrl.hanldeLocalChange()">
+
+  <div class="arrows" flex layout="column" layout-align="center center">
+    <div class="arrow"
+         flex layout="column" layout-align="center center"
+         ng-click="$ctrl.handleArrowClickInt(true)">⬆</div>
+    <div class="arrow"
+         flex layout="column" layout-align="center center"
+         ng-click="$ctrl.handleArrowClickInt(false)">⬇</div>
+  </div>
+  <div class="arrows" flex layout="column" layout-align="center center">
+    <div class="arrow" ng-click="$ctrl.handleArrowClick(true)">▲</div>
+    <div class="arrow" ng-click="$ctrl.handleArrowClick(false)">▼</div>
+  </div>
+</div>

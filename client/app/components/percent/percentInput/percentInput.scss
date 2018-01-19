@@ -1,0 +1,12 @@
+.arrows {
+  max-width: 1rem;
+}
+
+.arrow {
+  cursor: pointer;
+  user-select: none;
+  color: gray;
+  &:hover {
+    color: rgb(255,64,129)
+  }
+}
